@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#000000"
+tools:context="io.github.poerhiza.textsafe.EditAutoResponseActivity">
+
+<TextView
+    android:id="@+id/textView2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/text_auto_response_response"
+    android:layout_alignLeft="@+id/text_auto_response_title"
+    android:layout_marginBottom="15dp"
+    android:text="@string/response_message"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textColor="#FFFFFF" />
+
+<TextView
+    android:id="@+id/editText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/text_auto_response_title"
+    android:layout_alignLeft="@+id/text_auto_response_title"
+    android:layout_marginBottom="14dp"
+    android:text="@string/title"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textColor="#FFFFFF" />
+
+<EditText
+    android:id="@+id/text_auto_response_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/textView2"
+    android:layout_alignLeft="@+id/text_auto_response_response"
+    android:layout_alignRight="@+id/text_auto_response_response"
+    android:layout_marginBottom="40dp"
+    android:ems="10"
+    android:textColor="#FFF"
+    android:background="#333" />
+
+<Button
+    android:id="@+id/button_edit_auto_response_cancel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBaseline="@+id/button_edit_auto_response_apply"
+    android:layout_alignBottom="@+id/button_edit_auto_response_apply"
+    android:layout_alignRight="@+id/text_auto_response_response"
+    android:layout_marginRight="47dp"
+    android:onClick="cancelSettings"
+    android:text="@string/cancel" />
+
+<Button
+    android:id="@+id/button_edit_auto_response_apply"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignRight="@+id/textView2"
+    android:layout_marginBottom="24dp"
+    android:layout_marginRight="15dp"
+    android:onClick="applySettings"
+    android:text="@string/apply" />
+
+<EditText
+    android:id="@+id/text_auto_response_response"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/button_edit_auto_response_cancel"
+    android:layout_marginBottom="68dp"
+    android:ems="10"
+    android:fadingEdge="vertical"
+    android:inputType="textMultiLine"
+    android:lines="6"
+    android:maxLines="6"
+    android:scrollbars="vertical"
+    android:shadowDx="1"
+    android:shadowDy="1"
+    android:shadowRadius="1"
+    android:width="300dp"
+    android:background="#333"
+    android:textColor="#FFF"
+    android:elegantTextHeight="false"
+    android:editable="false"
+    android:layout_centerHorizontal="true"
+    android:textIsSelectable="false" />
+
+</RelativeLayout>

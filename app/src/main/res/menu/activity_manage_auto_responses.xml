@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/auto_response_create_new"
+        android:orderInCategory="100"
+        android:visible="false"
+        android:icon="@mipmap/content_new"
+        android:title="@string/menu_create_auto_response"/>
+    <item
+        android:id="@+id/auto_response_edit"
+        android:orderInCategory="100"
+        android:visible="true"
+        android:icon="@mipmap/content_edit"
+        android:title="@string/menu_edit_auto_response"/>
+    <item
+        android:id="@+id/auto_response_use"
+        android:orderInCategory="100"
+        android:visible="true"
+        android:icon="@mipmap/content_save"
+        android:title="@string/menu_use_auto_response"/>
+    <item
+        android:id="@+id/auto_response_delete"
+        android:orderInCategory="100"
+        android:visible="true"
+        android:icon="@mipmap/content_discard"
+        android:title="@string/menu_delete_auto_response"/>
+</menu>
