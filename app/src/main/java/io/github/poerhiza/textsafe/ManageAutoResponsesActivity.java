@@ -1,6 +1,20 @@
 package io.github.poerhiza.textsafe;
 
-import java.util.ArrayList;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+
 import java.util.List;
 
 import io.github.poerhiza.textsafe.adapters.AutoResponseAdapter;
@@ -10,24 +24,7 @@ import io.github.poerhiza.textsafe.utilities.SQLHelper;
 import io.github.poerhiza.textsafe.utilities.UIMessages;
 import io.github.poerhiza.textsafe.valueobjects.AutoResponse;
 
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.app.Activity;
-import android.util.Log;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
-
-public class ManageAutoResponsesActivity extends Activity
-{
+public class ManageAutoResponsesActivity extends Activity {
     private static final int EDIT_AUTO_RESPONSE_MENU_ID = 3;//Menu.FIRST;
     private static final int DELETE_AUTO_RESPONSE_ID = 2;//Menu.FIRST + 1;
     private static final int USE_AUTO_RESPONSE_ID = 1;//Menu.FIRST + 2;
@@ -44,11 +41,10 @@ public class ManageAutoResponsesActivity extends Activity
 
         final ListView autoResponseListView = (ListView) findViewById(R.id.auto_response_list);
 
-        autoResponseListView.setOnItemClickListener(new OnItemClickListener()
-        {
+        autoResponseListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3)
-            {
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
+                Log.d(AutoResponse.TAG, "cliked an entry");
                 selected_auto_response = (AutoResponse) adapter.getItemAtPosition(position);
                 openMenu();
             }
@@ -57,10 +53,11 @@ public class ManageAutoResponsesActivity extends Activity
         final AutoResponseAdapter autoResponseEntryAdapter = new AutoResponseAdapter(this, R.layout.auto_response_item);
         autoResponseListView.setAdapter(autoResponseEntryAdapter);
 // Populate the list, through the adapter
-        for(final AutoResponse entry : getAutoResponseEntries()) {
+        for (final AutoResponse entry : getAutoResponseEntries()) {
             autoResponseEntryAdapter.add(entry);
         }
     }
+
     private List<AutoResponse> getAutoResponseEntries() {
 // Let's setup some test data.
 // Normally this would come from some asynchronous fetch into a data source
@@ -69,13 +66,11 @@ public class ManageAutoResponsesActivity extends Activity
     }
 
 
-    public void bRefresh_click(View v)
-    {
+    public void bRefresh_click(View v) {
         refreshView();
     }
 
-    public boolean onCreateOptionsMenu (Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
@@ -83,17 +78,14 @@ public class ManageAutoResponsesActivity extends Activity
         return true;
     }
 
-    protected void openMenu()
-    {
+    protected void openMenu() {
         openOptionsMenu();
     }
 
-    public boolean onOptionsItemSelected (MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         Intent newItem = null;
 
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.auto_response_create_new:
                 newItem = new Intent(this, EditAutoResponseActivity.class);
                 newItem.putExtra(Constants.AUTO_RESPONSE_RETURN_VALUE, EditAutoResponseActivity.STATE_NEW);
@@ -115,8 +107,7 @@ public class ManageAutoResponsesActivity extends Activity
         }
     }
 
-    private void deleteAutoResponse(int id)
-    {
+    private void deleteAutoResponse(int id) {
         final int arID = id;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -139,88 +130,75 @@ public class ManageAutoResponsesActivity extends Activity
         builder.create().show();
     }
 
-    private void refreshView(){
+    private void refreshView() {
 
     }
 
-    private void returnResponse(AutoResponse autoResponse)
-    {
+    private void returnResponse(AutoResponse autoResponse) {
         Intent resultIntent = new Intent();
         resultIntent.putExtra(Constants.AUTO_RESPONSE_RETURN_VALUE, autoResponse);
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == Constants.SET_AUTO_RESPONSE)
-        {
-            if (resultCode == RESULT_OK)
-            {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.SET_AUTO_RESPONSE) {
+            if (resultCode == RESULT_OK) {
                 AutoResponse result = (AutoResponse) data.getExtras().get(Constants.AUTO_RESPONSE_RETURN_VALUE);
                 returnResponse(result);
-            }
-            else if (resultCode == RESULT_FIRST_USER)
-            {
+            } else if (resultCode == RESULT_FIRST_USER) {
                 refreshView();
                 UIMessages.toast(getBaseContext(), getString(R.string.auto_response_updated));
-            }
-            else if (resultCode == RESULT_CANCELED)
-            {
+            } else if (resultCode == RESULT_CANCELED) {
                 UIMessages.toast(getBaseContext(), getString(R.string.edit_auto_response_canceled));
             }
         }
     }
 
-    public boolean onMenuOpened(int featureid, Menu menu)
-    {
-        if(menu != null)
-        {
-            if (selected_auto_response == null)
-            {
+    public boolean onMenuOpened(int featureid, Menu menu) {
+        if (menu != null) {
+            if (selected_auto_response == null) {
                 MenuItem tmp = null;
                 tmp = menu.getItem(CREATE_AUTO_RESPONSE_ID);
 
-                if(tmp != null)
+                if (tmp != null)
                     tmp.setVisible(true);
 
                 tmp = menu.getItem(EDIT_AUTO_RESPONSE_MENU_ID);
 
-                if(tmp != null)
+                if (tmp != null)
                     tmp.setVisible(false);
 
                 tmp = menu.getItem(USE_AUTO_RESPONSE_ID);
 
-                if(tmp != null)
+                if (tmp != null)
                     tmp.setVisible(false);
 
                 tmp = menu.getItem(DELETE_AUTO_RESPONSE_ID);
 
-                if(tmp != null)
+                if (tmp != null)
                     tmp.setVisible(false);
 
-            }
-            else
-            {
+            } else {
                 MenuItem tmp = null;
                 tmp = menu.getItem(CREATE_AUTO_RESPONSE_ID);
 
-                if(tmp != null)
+                if (tmp != null)
                     tmp.setVisible(false);
 
                 tmp = menu.getItem(EDIT_AUTO_RESPONSE_MENU_ID);
 
-                if(tmp != null)
+                if (tmp != null)
                     tmp.setVisible(true);
 
                 tmp = menu.getItem(USE_AUTO_RESPONSE_ID);
 
-                if(tmp != null)
+                if (tmp != null)
                     tmp.setVisible(true);
 
                 tmp = menu.getItem(DELETE_AUTO_RESPONSE_ID);
 
-                if(tmp != null)
+                if (tmp != null)
                     tmp.setVisible(true);
             }
         }
@@ -228,8 +206,7 @@ public class ManageAutoResponsesActivity extends Activity
         return true;
     }
 
-    public void onPanelClosed(int featureId, Menu menu)
-    {
+    public void onPanelClosed(int featureId, Menu menu) {
         selected_auto_response = null;
     }
 }

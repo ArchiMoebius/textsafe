@@ -1,16 +1,11 @@
 package io.github.poerhiza.textsafe.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.text.DateFormat;
 
 import io.github.poerhiza.textsafe.R;
 import io.github.poerhiza.textsafe.valueobjects.AutoResponse;
@@ -21,6 +16,18 @@ public class AutoResponseAdapter extends ArrayAdapter<AutoResponse> {
     public AutoResponseAdapter(final Context context, final int autoResponseItemLayoutResource) {
         super(context, 0);
         this.autoResponseItemLayoutResource = autoResponseItemLayoutResource;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled(int arg0)
+    {
+        return true;
     }
 
     @Override
@@ -42,21 +49,22 @@ public class AutoResponseAdapter extends ArrayAdapter<AutoResponse> {
 // The workingView is basically just the convertView re-used if possible
 // or inflated new if not possible
         View workingView = null;
-        if(null == convertView) {
+        if (null == convertView) {
             final Context context = getContext();
-            final LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             workingView = inflater.inflate(autoResponseItemLayoutResource, null);
         } else {
             workingView = convertView;
         }
         return workingView;
     }
+
     private ViewHolder getViewHolder(final View workingView) {
 // The viewHolder allows us to avoid re-looking up view references
 // Since views are recycled, these references will never change
         final Object tag = workingView.getTag();
         ViewHolder viewHolder = null;
-        if(null == tag || !(tag instanceof ViewHolder)) {
+        if (null == tag || !(tag instanceof ViewHolder)) {
             viewHolder = new ViewHolder();
             viewHolder.titleView = (TextView) workingView.findViewById(R.id.auto_response_item_title);
             viewHolder.subTitleView = (TextView) workingView.findViewById(R.id.auto_response_item_response);
@@ -66,6 +74,7 @@ public class AutoResponseAdapter extends ArrayAdapter<AutoResponse> {
         }
         return viewHolder;
     }
+
     /**
      * ViewHolder allows us to avoid re-looking up view references
      * Since views are recycled, these references will never change

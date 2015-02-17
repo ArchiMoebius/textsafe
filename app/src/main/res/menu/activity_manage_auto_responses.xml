@@ -3,6 +3,7 @@
         android:id="@+id/auto_response_create_new"
         android:orderInCategory="100"
         android:visible="false"
+        android:popupBackground="#fff"
         android:icon="@mipmap/content_new"
         android:title="@string/menu_create_auto_response"/>
     <item

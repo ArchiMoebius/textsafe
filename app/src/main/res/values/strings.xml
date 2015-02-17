@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-<string name="app_name">Text Safe</string>
-<string name="menu_settings">Settings</string>
-<string name="title_activity_main">Text Safe</string>
-<string name="title_activity_main_image_desc_header">header</string>
-<string name="title_activity_configuration">Configuration </string>
-<string name="title_activity_manage_auto_responses">Manage Auto Responses</string>
-<string name="hello_world">Hello world!</string>
-<string name="title_activity_edit_auto_response">EditAutoResponse</string>
-<string name="toast_notification_auto_response_enabled">Auto Response is now enabled.</string>
-<string name="toast_notification_auto_response_disabled">Disabled</string>
-<string name="menu_edit_auto_response">Edit</string>
-<string name="menu_delete_auto_response">Delete</string>
-<string name="menu_use_auto_response">Select For Use</string>
-<string name="menu_create_auto_response">Create New</string>
-<string name="edit_auto_response_canceled">Action Canceled</string>
-<string name="forward_to_ws_">Forward To WS.</string>
-<string name="web_service_url">Web-Service URL</string>
-<string name="drop_incoming_description">Drop Incoming : When enabled and Auto Response is on all incoming messages will be droped and the configured response will be sent back.</string>
-<string name="forward_to_ws_description">Forward To WS. : A copy of all messages received will be forwared to a supplied web-service URL.</string>
-<string name="drop_incoming">Drop Incoming</string>
-<string name="click_here_to_manage_your_auto_responses">Click here to manage your auto responses</string>
-<string name="auto_response_updated">Response Updated</string>
-<string name="mainTitleText">Text</string>
-<string name="mainTitleSafe">Safe</string>
-<string name="loading_">Loading...</string>
-<string name="response_message">Response Message</string>
-<string name="title">Title</string>
-<string name="cancel">Cancel</string>
-<string name="apply">Apply</string>
-<string name="save">Save</string>
+    <string name="app_name">Text Safe</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Text Safe</string>
+    <string name="title_activity_main_image_desc_header">header</string>
+    <string name="title_activity_configuration">Configuration </string>
+    <string name="title_activity_manage_auto_responses">Manage Auto Responses</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_edit_auto_response">EditAutoResponse</string>
+    <string name="toast_notification_auto_response_enabled">Auto Response is now enabled</string>
+    <string name="toast_notification_auto_response_disabled">Auto Response is now disabled</string>
+    <string name="menu_edit_auto_response">Edit</string>
+    <string name="menu_delete_auto_response">Delete</string>
+    <string name="menu_use_auto_response">Select For Use</string>
+    <string name="menu_create_auto_response">Create New</string>
+    <string name="edit_auto_response_canceled">Action Canceled</string>
+    <string name="forward_to_ws_">Forward To WS.</string>
+    <string name="web_service_url">Web-Service URL</string>
+    <string name="drop_incoming_description">Drop Incoming : When enabled and Auto Response is on all incoming messages will be dropped and the configured response will be sent back.</string>
+    <string name="forward_to_ws_description">Forward To WS. : A copy of all messages received will be forwarded to a supplied web-service URL.</string>
+    <string name="drop_incoming">Drop Incoming</string>
+    <string name="click_here_to_manage_your_auto_responses">Click here to manage your auto responses</string>
+    <string name="auto_response_updated">Auto Response Updated</string>
+    <string name="mainTitleText">Text</string>
+    <string name="mainTitleSafe">Safe</string>
+    <string name="loading_">Loading&#8230;&#8230;&#8230;</string>
+    <string name="response_message">Auto Response Message:</string>
+    <string name="title">Title:</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="save">Save</string>
     <string name="action_settings">Settings</string>
     <string name="header">header</string>
-
 </resources>

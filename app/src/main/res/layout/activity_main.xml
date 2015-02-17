@@ -1,52 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/mainView"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_gravity="center"
-android:background="#000000"
-tools:context="io.github.poerhiza.textsafe.MainActivity">
-
-<TextView
-    android:id="@+id/textView1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/mainTitleSafe"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    android:textColor="#ffffff"
-    android:layout_marginTop="31dp"
-    android:layout_below="@+id/textView2"
-    android:layout_toEndOf="@+id/textView2" />
-
-<ImageButton
-    android:id="@+id/imageButton1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="#000000"
-    android:src="@mipmap/auto_response_on"
-    android:layout_below="@+id/textView2"
-    android:layout_toStartOf="@+id/textView1" />
+    tools:context="io.github.poerhiza.textsafe.MainActivity">
 
-<TextView
-    android:id="@+id/textView2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/mainTitleText"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    android:textColor="#FFFFFF"
-    android:layout_marginLeft="15dp"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainTitleSafe"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:layout_alignTop="@+id/imageButton1"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:src="@mipmap/auto_response_on"
+        android:layout_below="@+id/textView2"
+        android:layout_toStartOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainTitleText"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
-    android:id="@+id/linearLayout1"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:background="@mipmap/message_area_background"
-    android:orientation="vertical"
-    android:onClick="onAutoResponseClick"
-    android:padding="30dp"
+        android:orientation="vertical"
+        android:onClick="onAutoResponseClick"
+        android:padding="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="104dp"
@@ -54,14 +53,14 @@ tools:context="io.github.poerhiza.textsafe.MainActivity">
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true">
 
-    <TextView
-        android:id="@+id/auto_response_in_use"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#cccccc"
-        android:text="@string/click_here_to_manage_your_auto_responses"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:id="@+id/auto_response_in_use"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#cccccc"
+            android:text="@string/click_here_to_manage_your_auto_responses"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-</LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
