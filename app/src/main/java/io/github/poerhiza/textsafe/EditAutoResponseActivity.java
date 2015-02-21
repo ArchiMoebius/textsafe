@@ -24,7 +24,6 @@ public class EditAutoResponseActivity extends Activity {
 
         if (STATE != STATE_NEW) {
             SQLHelper sqlHelper = new SQLHelper(getBaseContext());
-            ;
             AutoResponse ar = sqlHelper.getAutoResponse(STATE);
 
             if (ar != null) {
@@ -55,7 +54,7 @@ public class EditAutoResponseActivity extends Activity {
 
             long id = sqlHelper.addAutoResponse(autoResponse);
 
-            if (id >= 0)
+            if (id >= 0) // TODO: better error handling
                 autoResponse.setID((int) id);
             setResult(Activity.RESULT_OK, resultIntent);
         } else {

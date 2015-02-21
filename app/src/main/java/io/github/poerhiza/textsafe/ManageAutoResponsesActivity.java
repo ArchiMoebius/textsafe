@@ -25,18 +25,17 @@ import io.github.poerhiza.textsafe.utilities.UIMessages;
 import io.github.poerhiza.textsafe.valueobjects.AutoResponse;
 
 public class ManageAutoResponsesActivity extends Activity {
-    private static final int EDIT_AUTO_RESPONSE_MENU_ID = 3;//Menu.FIRST;
-    private static final int DELETE_AUTO_RESPONSE_ID = 2;//Menu.FIRST + 1;
-    private static final int USE_AUTO_RESPONSE_ID = 1;//Menu.FIRST + 2;
-    private static final int CREATE_AUTO_RESPONSE_ID = 0;//Menu.FIRST + 3;
-    private static final int AUTO_RESPONSE_SELECTED_HIGHLIGHT_COLOR = Color.rgb(60, 70, 80);
-    private static final int AUTO_RESPONSE_COLOR = Color.rgb(0, 0, 0);
+    private static final int EDIT_AUTO_RESPONSE_MENU_ID = 3;
+    private static final int DELETE_AUTO_RESPONSE_ID = 2;
+    private static final int USE_AUTO_RESPONSE_ID = 1;
+    private static final int CREATE_AUTO_RESPONSE_ID = 0;
     private static AutoResponse selected_auto_response = null;
+    private AutoResponseAdapter autoResponseEntryAdapter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_auto_responses);
-// Setup the list view
+
         AutoResponseDataLoader.ctx = getBaseContext();
 
         final ListView autoResponseListView = (ListView) findViewById(R.id.auto_response_list);
@@ -44,24 +43,17 @@ public class ManageAutoResponsesActivity extends Activity {
         autoResponseListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
-                Log.d(AutoResponse.TAG, "cliked an entry");
                 selected_auto_response = (AutoResponse) adapter.getItemAtPosition(position);
                 openMenu();
             }
         });
 
-        final AutoResponseAdapter autoResponseEntryAdapter = new AutoResponseAdapter(this, R.layout.auto_response_item);
+        autoResponseEntryAdapter = new AutoResponseAdapter(this, R.layout.auto_response_item);
         autoResponseListView.setAdapter(autoResponseEntryAdapter);
-// Populate the list, through the adapter
-        for (final AutoResponse entry : getAutoResponseEntries()) {
-            autoResponseEntryAdapter.add(entry);
-        }
+        autoResponseEntryAdapter.addAll(getAutoResponseEntries());
     }
 
     private List<AutoResponse> getAutoResponseEntries() {
-// Let's setup some test data.
-// Normally this would come from some asynchronous fetch into a data source
-// such as a sqlite database, or an HTTP request
         return AutoResponseDataLoader.getAllData();
     }
 
@@ -111,8 +103,8 @@ public class ManageAutoResponsesActivity extends Activity {
         final int arID = id;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
-        //builder.setIcon(R.drawable.dialog_question);
-        builder.setTitle("Remove Response?");
+
+        builder.setTitle("Remove Response?"); // TODO: move string constants into strings file...gesh...
         builder.setInverseBackgroundForced(true);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -131,7 +123,9 @@ public class ManageAutoResponsesActivity extends Activity {
     }
 
     private void refreshView() {
-
+        autoResponseEntryAdapter.clear();
+        autoResponseEntryAdapter.addAll(getAutoResponseEntries());
+        autoResponseEntryAdapter.notifyDataSetChanged();
     }
 
     private void returnResponse(AutoResponse autoResponse) {
@@ -148,9 +142,9 @@ public class ManageAutoResponsesActivity extends Activity {
                 returnResponse(result);
             } else if (resultCode == RESULT_FIRST_USER) {
                 refreshView();
-                UIMessages.toast(getBaseContext(), getString(R.string.auto_response_updated));
+                UIMessages.toast(getBaseContext(), getString(R.string.auto_response_updated));//TODO: move to strings
             } else if (resultCode == RESULT_CANCELED) {
-                UIMessages.toast(getBaseContext(), getString(R.string.edit_auto_response_canceled));
+                UIMessages.toast(getBaseContext(), getString(R.string.edit_auto_response_canceled));//TODO: move to strings
             }
         }
     }
