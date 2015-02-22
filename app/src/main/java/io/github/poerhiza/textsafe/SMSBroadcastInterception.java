@@ -116,10 +116,6 @@ public class SMSBroadcastInterception extends BroadcastReceiver {
         }
     }
 
-    protected static void clearAutoResponseLog() {
-        lastSent.clear();
-    }
-
     //	without this an autoResponse storm can ensue!
     private class CustomTimerTask extends TimerTask {
         private Handler mHandler = new Handler();
@@ -132,15 +128,13 @@ public class SMSBroadcastInterception extends BroadcastReceiver {
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            SMSBroadcastInterception.clearAutoResponseLog();
+                            lastSent.clear();
                             timerSet = false;
                             timer = null;
                         }
                     });
                 }
             }).start();
-
         }
-
     }
 }

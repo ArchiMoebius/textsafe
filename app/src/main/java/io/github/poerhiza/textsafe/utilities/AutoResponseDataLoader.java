@@ -17,7 +17,7 @@ public class AutoResponseDataLoader {
 
     public static List<AutoResponse> getAllData() {
         if (ctx == null) {
-            Log.i(AutoResponse.TAG, "You need to give me a context!");
+            Log.i(TAG, "You need to give me a context!");
             return null;
         }
         if (sqlHelper == null && ctx != null) {
@@ -30,7 +30,7 @@ public class AutoResponseDataLoader {
 
     public static List<AutoResponse> getFlattenedData() {
         if (ctx == null) {
-            Log.i(AutoResponse.TAG, "You need to give me a context!");
+            Log.i(TAG, "You need to give me a context!");
             return null;
         }
         if (sqlHelper == null && ctx != null) {
@@ -44,7 +44,7 @@ public class AutoResponseDataLoader {
 
     public static Pair<Boolean, List<AutoResponse>> getRows(int page, int pageSize) {
         if (ctx == null) {
-            Log.i(AutoResponse.TAG, "You need to give me a context!");
+            Log.i(TAG, "You need to give me a context!");
             return null;
         }
 

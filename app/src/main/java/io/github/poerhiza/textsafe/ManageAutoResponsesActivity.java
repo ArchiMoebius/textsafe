@@ -44,7 +44,7 @@ public class ManageAutoResponsesActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
                 selected_auto_response = (AutoResponse) adapter.getItemAtPosition(position);
-                openMenu();
+                openOptionsMenu();
             }
         });
 
@@ -68,10 +68,6 @@ public class ManageAutoResponsesActivity extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.activity_manage_auto_responses, menu);
         return true;
-    }
-
-    protected void openMenu() {
-        openOptionsMenu();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -104,9 +100,9 @@ public class ManageAutoResponsesActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
 
-        builder.setTitle("Remove Response?"); // TODO: move string constants into strings file...gesh...
+        builder.setTitle(R.string.remove_are);
         builder.setInverseBackgroundForced(true);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 SQLHelper sqlHelper = new SQLHelper(getBaseContext());
                 sqlHelper.deleteAutoResponse(new AutoResponse(arID, "", ""));
@@ -114,7 +110,7 @@ public class ManageAutoResponsesActivity extends Activity {
                 dialog.dismiss();
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
@@ -142,9 +138,9 @@ public class ManageAutoResponsesActivity extends Activity {
                 returnResponse(result);
             } else if (resultCode == RESULT_FIRST_USER) {
                 refreshView();
-                UIMessages.toast(getBaseContext(), getString(R.string.auto_response_updated));//TODO: move to strings
+                UIMessages.toast(getBaseContext(), getString(R.string.auto_response_updated));
             } else if (resultCode == RESULT_CANCELED) {
-                UIMessages.toast(getBaseContext(), getString(R.string.edit_auto_response_canceled));//TODO: move to strings
+                UIMessages.toast(getBaseContext(), getString(R.string.edit_auto_response_canceled));
             }
         }
     }
@@ -152,48 +148,15 @@ public class ManageAutoResponsesActivity extends Activity {
     public boolean onMenuOpened(int featureid, Menu menu) {
         if (menu != null) {
             if (selected_auto_response == null) {
-                MenuItem tmp = null;
-                tmp = menu.getItem(CREATE_AUTO_RESPONSE_ID);
-
-                if (tmp != null)
-                    tmp.setVisible(true);
-
-                tmp = menu.getItem(EDIT_AUTO_RESPONSE_MENU_ID);
-
-                if (tmp != null)
-                    tmp.setVisible(false);
-
-                tmp = menu.getItem(USE_AUTO_RESPONSE_ID);
-
-                if (tmp != null)
-                    tmp.setVisible(false);
-
-                tmp = menu.getItem(DELETE_AUTO_RESPONSE_ID);
-
-                if (tmp != null)
-                    tmp.setVisible(false);
-
+                menu.getItem(CREATE_AUTO_RESPONSE_ID).setVisible(true);
+                menu.getItem(EDIT_AUTO_RESPONSE_MENU_ID).setVisible(false);
+                menu.getItem(USE_AUTO_RESPONSE_ID).setVisible(false);
+                menu.getItem(DELETE_AUTO_RESPONSE_ID).setVisible(false);
             } else {
-                MenuItem tmp = null;
-                tmp = menu.getItem(CREATE_AUTO_RESPONSE_ID);
-
-                if (tmp != null)
-                    tmp.setVisible(false);
-
-                tmp = menu.getItem(EDIT_AUTO_RESPONSE_MENU_ID);
-
-                if (tmp != null)
-                    tmp.setVisible(true);
-
-                tmp = menu.getItem(USE_AUTO_RESPONSE_ID);
-
-                if (tmp != null)
-                    tmp.setVisible(true);
-
-                tmp = menu.getItem(DELETE_AUTO_RESPONSE_ID);
-
-                if (tmp != null)
-                    tmp.setVisible(true);
+                menu.getItem(CREATE_AUTO_RESPONSE_ID).setVisible(false);
+                menu.getItem(EDIT_AUTO_RESPONSE_MENU_ID).setVisible(true);
+                menu.getItem(USE_AUTO_RESPONSE_ID).setVisible(true);
+                menu.getItem(DELETE_AUTO_RESPONSE_ID).setVisible(true);
             }
         }
 

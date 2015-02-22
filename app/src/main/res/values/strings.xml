@@ -32,4 +32,7 @@
     <string name="save">Save</string>
     <string name="action_settings">Settings</string>
     <string name="header">header</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="remove_are">Remove Auto Response Entry?</string>
 </resources>

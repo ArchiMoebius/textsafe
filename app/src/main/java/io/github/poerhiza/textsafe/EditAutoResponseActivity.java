@@ -42,7 +42,6 @@ public class EditAutoResponseActivity extends Activity {
     public void applySettings(View v) {
         Intent resultIntent = new Intent();
         SQLHelper sqlHelper = new SQLHelper(getBaseContext());
-        ;
         AutoResponse autoResponse = null;
 
         if (STATE == STATE_NEW) {
