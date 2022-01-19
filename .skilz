@@ -1,0 +1,11 @@
+{
+  "branch": "master",
+  "description": "An Android application to auto reply to incoming text messages",
+  "title": "Textsafe",
+  "links": [
+    {
+      "title": "View Source",
+      "href": "https://github.com/ArchiMoebius/textsafe"
+    }
+  ]
+}
